@@ -1,8 +1,10 @@
 #include "Cliente.h"
+#include "Produto.h"
 
 Cliente::Cliente(int tempoDeChegada)
 {
-this->tempoDeChegada = tempoDeChegada;
+	this->tempoDeChegada = tempoDeChegada;
+	this->qtProdutos = rand()%99 + 2;
 }
 
 Cliente::~Cliente()

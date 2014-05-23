@@ -27,7 +27,7 @@ class Cliente
     	bool tipoCliente; //true == cliente que procura a fila menor / false == cliente que procura a fila com menos produtos
 
     	int qtProdutos;			// Gerado aleatoriamente entre 2 e 100.
-    	int valorTotalCompras;	// qtProdutos*(R$ 1 a R$ 90)
+    	double valorTotalCompras;	// qtProdutos*(R$ 1 a R$ 90)
 
     	int tempoDeChegada;
     	int tempoDeSaida;	
