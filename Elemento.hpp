@@ -1,10 +1,9 @@
 #ifndef ELEMENTO_H
 #define ELEMENTO_H
 
-template <typename T>
-class Elemento {
+template <typename T> class Elemento {
 	public:
-		Elemento(*T);
+		Elemento(T*);
 		~Elemento();
 		Elemento<T>* getProximo();
 		void setProximo(Elemento<T>*);

@@ -5,6 +5,6 @@ using namespace std;
 
 int main()
 {	
-	FilaEncadeada<int>* fila = new FilaEncadeada<int>()
+	FilaEncadeada<int>* fila = new FilaEncadeada<int>();
     return 0;
 }

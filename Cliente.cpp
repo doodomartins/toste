@@ -2,17 +2,12 @@
 
 Cliente::Cliente(int tempoDeChegada)
 {
-    //ctor
+this->tempoDeChegada = tempoDeChegada;
 }
 
 Cliente::~Cliente()
 {
     //dtor
-}
-
-Cliente::Cliente(int tempoDeChegada)
-{
-    
 }
 
 bool Cliente::getCheque()
