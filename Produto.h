@@ -1,15 +1,14 @@
 #ifndef PRODUTO_H
 #define PRODUTO_H
 	
-class Produto()
+class Produto
 {
 	public: 
 		Produto();
 		virtual ~Produto();
-		double getValor();
+		int getValor();
 	protected:
 	private:
-		double valor;
+		int valor;
 };
-
 #endif

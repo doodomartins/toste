@@ -1,9 +1,11 @@
 #include "Produto.h"
 #include <cstdlib>
 
+/*
+	Gera o valor do produto aleatoriamente.
+*/
 Produto::Produto()
 {	
-
 	valor = rand()%90 + 1;	
 }
 
@@ -12,7 +14,10 @@ Produto::~Produto()
 
 }
 
-double Produto::getValor()
+/*
+	Retorna o valor do produto.
+*/
+int Produto::getValor()
 {
 	return this->valor;
 }
