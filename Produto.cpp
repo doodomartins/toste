@@ -1,7 +1,7 @@
 #include "Produto.h"
 #include <cstdlib>
 
-/*
+/**
 	Gera o valor do produto aleatoriamente.
 */
 Produto::Produto()
@@ -14,7 +14,7 @@ Produto::~Produto()
 
 }
 
-/*
+/**
 	Retorna o valor do produto.
 */
 int Produto::getValor()

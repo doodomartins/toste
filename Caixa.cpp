@@ -5,7 +5,7 @@ Caixa::Caixa(std::string id, int salario, int eficiencia)
 {	
     this->id = id;
     this->salario = salario;
-        /*
+        /**
             Inicia o segPorItem e o tempoPagamentoCheque conforme a
             eficiencia passada por parametro
         */
@@ -32,7 +32,7 @@ Caixa::~Caixa()
 {
     delete fila;
 }
-/*
+/***
     Adiciona o cliente a fila de clientes
 */
 void Caixa::addCliente(Cliente* cliente)
@@ -41,7 +41,7 @@ void Caixa::addCliente(Cliente* cliente)
     fila->addCliente(cliente);
 }
 
-/*
+/***
     Retira o cliente do inico da fila, e soma todos os
     produtos dele ao faturamento total. Apos soma 1 ao
     numero de clientes atendidos.
@@ -57,7 +57,7 @@ void Caixa::atendeCliente(int horario)
     this->clientesAtendidos++;
 }
 
-/*
+/***
     Retorna identificador.
 */
 std::string Caixa::getId()
@@ -65,7 +65,7 @@ std::string Caixa::getId()
     return this->id;
 }
 
-/*
+/***
     Retorna salario.
 */
 int Caixa::getSalario()
@@ -73,7 +73,7 @@ int Caixa::getSalario()
     return this->salario;
 }
 
-/*
+/***
     Retorna quantidade de clientes na fila.
 */
 int Caixa::qtClientesFila()
@@ -81,7 +81,7 @@ int Caixa::qtClientesFila()
      return this->fila->getQtClientes();
 }
 
-/*
+/***
     Retorna a quantidade de produtos na fila.
 */
 int Caixa::qtProdutosFila()
@@ -89,7 +89,7 @@ int Caixa::qtProdutosFila()
     return this->fila->getQtItens();
 }
 
-/*
+/**
     Calcula(atualiza) e retorn o faturamento medio.
 */
 double Caixa::getFaturamentoMedio()
@@ -98,7 +98,7 @@ double Caixa::getFaturamentoMedio()
     return this->faturamentoMedio;
 }
 
-/*
+/**
     Retorna o faturamento total.
 */
 double Caixa::getFaturamentoTotal()
@@ -106,7 +106,7 @@ double Caixa::getFaturamentoTotal()
     return this->faturamentoTotal;
 }
 
-/*
+/**
     Retorna a quantidade de clientes Atendidos.
 */
 int Caixa::getClientesAtendidos()
@@ -114,7 +114,7 @@ int Caixa::getClientesAtendidos()
  	return this->clientesAtendidos;
 }
 
-/*
+/**
     Calcula o tempo de saida do cliente,
     considerando os clientes na frente dele.
 */
