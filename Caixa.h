@@ -9,7 +9,7 @@ class Caixa
         Caixa(std::string id, int salario, int eficiencia);
         virtual ~Caixa();
 
-        void addCliente(Cliente *cliente); //add cliente na fila
+        void addCliente(Cliente* cliente); //add cliente na fila
 	    void atendeCliente(int horario);   //tira cliente da fila e atende
     	std::string getId();                    
    		int getSalario();
@@ -18,7 +18,10 @@ class Caixa
     	double getFaturamentoMedio();
         double getFaturamentoTotal();               
     	int getClientesAtendidos();
-    	int calcTempoSaida(Cliente *cliente);	// Clientes na frente dele na fila, (qt produtos + cheque)*eficiencia
+    	int calcTempoSaida(Cliente* cliente);	// Clientes na frente dele na fila, (qt produtos + cheque)*eficiencia
+        double getTempoMedioFila(int);
+        FilaCliente* getFila();
+
 
     protected:
     private:
@@ -29,7 +32,7 @@ class Caixa
     int segPorItem;		        //				2 -> segPorItem = 2; segCheque = 25;
     int tempoPagamentoCheque;   //				3 -> segPorItem = 4; segCheque = 60;
     
-    int tempoCliente;           //qtProdutos*segPorItem + tempoCheque
+    int tempoFila;           
 
     
     int clientesAtendidos;		// contador

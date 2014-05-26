@@ -26,8 +26,12 @@ template<typename T> class ListaCircular {
         T* mostra(int);
         void destroiLista();
 
+        // Elemento<T>* proximo();
+        // bool estaNoInicio();
+
 
 	private:
+        //Elemento<T>* atual;
 		Elemento<T>* primeiro;
         Elemento<T>* ultimo;
 		int tamanho;
@@ -38,6 +42,7 @@ ListaCircular<T>::ListaCircular(){
 	primeiro = 0;
     ultimo = 0;
 	tamanho = 0;
+   // atual = 0;
 }
 
 template <typename T>
@@ -55,15 +60,18 @@ void ListaCircular<T>::adicionaNoInicio(T* dado){
     Elemento<T>* novoDado = new Elemento<T>(dado);
     
     if(vazia()){
+       
         primeiro = novoDado;
         novoDado->setProximo(novoDado);
         ultimo = novoDado;
+       // atual = novoDado;
        
     } else {
+
         novoDado->setProximo(primeiro);
         primeiro = novoDado;
         ultimo->setProximo(novoDado);
-
+        //atual = novoDado;
     }  
 
     tamanho++;

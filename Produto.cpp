@@ -9,6 +9,9 @@ Produto::Produto()
 	valor = rand()%90 + 1;	
 }
 
+/**
+	Destrutor
+*/
 Produto::~Produto()
 {
 

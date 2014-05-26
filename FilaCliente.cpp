@@ -4,8 +4,13 @@ FilaCliente::FilaCliente(){
 
 }
 
+/**
+	Retira todos os elementos da fila
+*/
 FilaCliente::~FilaCliente(){
-
+	while(this->getTamanho() > 0){
+        this->retira();
+    }
 }
 
 /**
@@ -29,13 +34,16 @@ void FilaCliente::somarItens(Cliente* c){
 	this->qtItens += c->getQtProdutos();
 }
 
+
 /**
 	Adiciona o cliente na fila e soma a quantidade de itens dele
-
 */
 void FilaCliente::addCliente(Cliente* c){
+	
 	this->adiciona(c);
+	this->somarQtCliente();
 	this->somarItens(c);
+
 }	
 
 /**
@@ -44,7 +52,8 @@ void FilaCliente::addCliente(Cliente* c){
 */
 Cliente* FilaCliente::removeCliente(){
 	Cliente* retorno =  this->retira();
-	this->removeItens(retorno);
+    this->removeItens(retorno);
+	this->qtClientes--;
 	return retorno;
 }
 
@@ -53,4 +62,11 @@ Cliente* FilaCliente::removeCliente(){
 */
 void FilaCliente::removeItens(Cliente* c){
 	this->qtItens -= c->getQtProdutos();
+}
+
+/**
+	Soma mais 1 a quantidade de cliente
+*/
+void FilaCliente::somarQtCliente(){
+	this->qtClientes++;
 }

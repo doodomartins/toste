@@ -24,6 +24,9 @@ Cliente::Cliente(int tempoDeChegada)
 
 }
 
+/**
+	Deleta os produtos.
+*/
 Cliente::~Cliente()
 {
     delete produtos;

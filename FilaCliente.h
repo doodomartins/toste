@@ -20,6 +20,7 @@ class FilaCliente : public FilaEncadeada<Cliente> {
 
         void somarItens(Cliente*);
         void removeItens(Cliente*);
+        void somarQtCliente();
 };
 
 #endif

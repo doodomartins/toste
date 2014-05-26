@@ -1,14 +1,16 @@
 #include "Caixa.h"
- #include <string>
+#include <string>
 
-Caixa::Caixa(std::string id, int salario, int eficiencia)
+/**
+    Inicia o segPorItem e o tempoPagamentoCheque conforme a
+    eficiencia passada por parametro.
+    Inicializa os outros atributos.
+*/
+Caixa::Caixa(std::string id, int eficiencia, int salario)
 {	
     this->id = id;
     this->salario = salario;
-        /**
-            Inicia o segPorItem e o tempoPagamentoCheque conforme a
-            eficiencia passada por parametro
-        */
+        
       switch (eficiencia) {
     case 1: //eficiente
         segPorItem = 1;
@@ -24,37 +26,52 @@ Caixa::Caixa(std::string id, int salario, int eficiencia)
     }
     this->fila = new FilaCliente();
     this->faturamentoTotal = 0;
-    this->faturamentoMedio -= salario;
+    
     this->clientesAtendidos = 0;
+    this->tempoFila = 0;
 }
 
+/**
+    Deleta a fila.
+*/
 Caixa::~Caixa()
 {
     delete fila;
 }
+
 /***
-    Adiciona o cliente a fila de clientes
+    Adiciona o cliente a fila de clientes, calculando e setando o tempo de saida do cliente e atualiza o tempo total da fila.
 */
 void Caixa::addCliente(Cliente* cliente)
-{   
-    this->calcTempoSaida(cliente);
-    fila->addCliente(cliente);
+{  
+    cliente->setTempoSaida(this->tempoFila + this->calcTempoSaida(cliente));
+    this->fila->addCliente(cliente);
+    this->tempoFila += this->calcTempoSaida(cliente);
 }
 
 /***
-    Retira o cliente do inico da fila, e soma todos os
+    Retira o cliente do inico da fila, caso tiver um, e soma todos os
     produtos dele ao faturamento total. Apos soma 1 ao
     numero de clientes atendidos.
 */
 void Caixa::atendeCliente(int horario)
-{		
-	Cliente* atendido;
-	atendido = fila->removeCliente();
-	for(int i = 0; i<atendido->getQtProdutos(); i++){
-		//USAR O REMOVE DA FILACLIENTE, QUE REMOVE QT ITENS DA FILA
-        this->faturamentoTotal += atendido->getProdutos()->retira()->getValor();
+{   
+    if(this->fila->getTamanho() == 0){
+        this->tempoFila++;
+        return;
     }
-    this->clientesAtendidos++;
+
+    Cliente* atendido = fila->getPrimeiro();
+    if(horario >= atendido->getTempoSaida()){  
+        fila->removeCliente();
+        for(int i = 0; i<atendido->getQtProdutos(); i++){
+	       	this->faturamentoTotal += atendido->getProdutos()->retira()->getValor();
+        }
+        this->clientesAtendidos++;
+     
+    } else {
+        return;
+    }
 }
 
 /***
@@ -94,7 +111,7 @@ int Caixa::qtProdutosFila()
 */
 double Caixa::getFaturamentoMedio()
 {   
-    this->faturamentoMedio += faturamentoTotal;
+    this->faturamentoMedio = faturamentoTotal - salario;
     return this->faturamentoMedio;
 }
 
@@ -115,11 +132,28 @@ int Caixa::getClientesAtendidos()
 }
 
 /**
-    Calcula o tempo de saida do cliente,
-    considerando os clientes na frente dele.
+    Calcula o tempo de saida do cliente.
 */
-//TODO
 int Caixa::calcTempoSaida(Cliente* cliente)
-{
-    return 0;
+{   
+    int tempo;
+    tempo = cliente->getQtProdutos()*this->segPorItem;
+    if(!cliente->getCheque()){
+        tempo += tempoPagamentoCheque;
+    }
+    return tempo;
+}
+
+/**
+    Retrona o tempo medio de permanencia na fila.
+*/
+double Caixa::getTempoMedioFila(int horario){
+    return this->tempoFila/horario;
+}
+
+/**
+    Retorna a fila do caixa.
+*/
+FilaCliente* Caixa::getFila(){
+    return this->fila;
 }
