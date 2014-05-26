@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include "FilasCheias.h"
 
-#define _ARQUIVO "parametros.config"
+#define _ARQUIVO "parametros.dat"
 using namespace std;
 
 /**
@@ -31,8 +31,11 @@ SuperMercado::SuperMercado()
     Percorre a lista de caixas atentendo, se for hora, os clientes. Ao final gera os dados e mostra os resultados. 
 */
 void SuperMercado::iniciarSimulacao()
-{   
-    lerArqiovo();
+{   if(tipoDeEntrada()){
+        requisitarParametros();
+    } else {
+    lerArquivo();
+    }   
 
     while(this->relogio < tempoDeSimulacao)
     {
@@ -74,7 +77,7 @@ void SuperMercado::iniciarSimulacao()
     Cria um arquivo e abre para leitura, verifica se foi abertom, apos disso le linha por linha, 
     e inicia os atributos do supermercado conforme cada linha. Ao final fecha o arquivo.
 */
-void SuperMercado::lerArqiovo()
+void SuperMercado::lerArquivo()
 {
     FILE* arquivo = fopen(_ARQUIVO, "r");   //abre arquivo pra leitura
     if (arquivo == NULL)                    //verifica se conseguiu abrir
@@ -132,8 +135,8 @@ void SuperMercado::lerArqiovo()
 
 void SuperMercado::mostrarResultado(){
     cout << "SuperMercado: " << this->nome << "\n\n";
-    cout << "Tempo de simulacao: " << this->tempoDeSimulacao /(60*60) << " horas" << "\n";
-    cout << "Tempo medio de chegada de cliente: " << this->tempoChegadaClientes << " segundos" << "\n";
+    cout << "Tempo de simulacao: " << this->tempoDeSimulacao /(60*60) << " hora(s)" << "\n";
+    cout << "Tempo medio de chegada de cliente: " << this->tempoChegadaClientes << " segundo(s)" << "\n";
     cout << "Caixas: " << this->nCaixas << "\n\n";
 
     cout << "Numero de clientes atendidos: " << this->clientesAtendidos << "\n";
@@ -220,5 +223,61 @@ bool SuperMercado::naoTemFilaDisponivel(){
         }
     }
     return true;
+}
+
+/**
+    Retorna true se o operador desejar inserir os parametros manualmente, false caso queira ler 
+    o arquivo de configuração "parametros.dat". 
+*/
+bool SuperMercado::tipoDeEntrada(){
+    cout << "Bem vindo!" << "\n" << "Entre com 1 se deseja ler o arquivo de configuracao." 
+    << "\n" << "Entre com 2 se deseja inserir parametros manualmente." << "\n";
+    int x;
+    cin >> x;
+
+    switch (x)
+    {
+        case 1:
+        return false;
+
+        default:
+        return true;
+    }
+}
+
+void SuperMercado::requisitarParametros(){
+    cout << "Entre com o nome do supermercado " << "\n";
+    cin >> this->nome;
+    cout << "Entre com o tempo de simulacao, em horas" << "\n";
+    cin >> this->tempoDeSimulacao;
+    cout << "Entre com intervalo de tempo, em segundos, de chegada de cada cliente " << "\n";
+    cin >> this->tempoDeSimulacao;
+    cout << "Entre com o numero de caixas" << "\n";
+    cin >> this->nCaixas;
+
+    for(int i = 0; i<this->nCaixas; i++)
+    {   
+        cout <<"aaaqqqq" << i;
+        char nomeCaixa[50];
+        int eficiencia;
+        int salario;
+
+        cout << "Entre com o nome do caixa " << i << "\n";
+        cin >> nomeCaixa;
+        cout << "Entre com a eficiencia do caixa " << i << "\n";
+        cin >> eficiencia;
+        cout << "Entre com o salario do caixa " << i << "\n";
+        cin >> salario;
+
+        Caixa* cx = new Caixa(string(nomeCaixa), eficiencia, salario);
+        cout << "Caixa criado com sucessagem" << cx->getId() << "\n";
+         cout << "Caixa adicionado com sucessagem" << listaDeCaixas->getTamanho() << "\n";
+    
+        this->listaDeCaixas->adicionaNoInicio(cx);
+        cout << "Caixa adicionado com sucessagem" << listaDeCaixas->getTamanho() << "\n";
+        cout << i << "i\n";
+        cout << nCaixas << "nCaixas\n";
+    }
+    cout << "aq";
 }
 

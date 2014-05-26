@@ -17,8 +17,10 @@ class SuperMercado
     void acharFilaMenor(Cliente*);
     bool naoTemFilaDisponivel();
 
-    //void acharFila(Cliente*);
-    void lerArqiovo();
+    bool tipoDeEntrada();
+    void requisitarParametros();
+
+    void lerArquivo();
     void mostrarResultado();
     void gerarDados();
 

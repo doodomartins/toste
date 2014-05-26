@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include "Cliente.h"
+#include <time.h>
 
 /**
 	Gera a quantidade de produtos aleatoriamente, 
@@ -9,7 +10,7 @@
 */
 Cliente::Cliente(int tempoDeChegada)
 {
-	srand(tempoDeChegada);
+	srand(time(NULL));
 	this->tempoDeChegada = tempoDeChegada;
 	this->qtProdutos = rand()%99 + 2;
 	produtos = new FilaEncadeada<Produto>();

@@ -26,13 +26,8 @@ template<typename T> class ListaCircular {
         T* mostra(int);
         void destroiLista();
 
-        // Elemento<T>* proximo();
-        // bool estaNoInicio();
-
-
 	private:
-        //Elemento<T>* atual;
-		Elemento<T>* primeiro;
+        Elemento<T>* primeiro;
         Elemento<T>* ultimo;
 		int tamanho;
 };
@@ -42,8 +37,7 @@ ListaCircular<T>::ListaCircular(){
 	primeiro = 0;
     ultimo = 0;
 	tamanho = 0;
-   // atual = 0;
-}
+   }
 
 template <typename T>
 ListaCircular<T>::~ListaCircular(){
@@ -64,27 +58,14 @@ void ListaCircular<T>::adicionaNoInicio(T* dado){
         primeiro = novoDado;
         novoDado->setProximo(novoDado);
         ultimo = novoDado;
-       // atual = novoDado;
-       
     } else {
 
         novoDado->setProximo(primeiro);
         primeiro = novoDado;
         ultimo->setProximo(novoDado);
-        //atual = novoDado;
     }  
 
     tamanho++;
-
-
-    // Elemento<T>* novoDado = new Elemento<T>(dado,cabeca->getProximoElemento());
-    // if (novoDado != 0) {
-    //     tamanho++;
-    //     cabeca->setProximoElemento(novoDado);
-    // } else{
-    //     throw ListaCheia();
-    // }
-
 }
 
 template <typename T>
@@ -95,7 +76,6 @@ void ListaCircular<T>::adicionaNaPos(T* dado, int pos){
         this->adicionaNoInicio(dado);
     } else{
         Elemento<T>* novoDado = new Elemento<T>(dado);
-        // if(novoDado != 0){
             //Cria um elemento aux(antetior) que é o elemento, que apontara para o novo elemento
             Elemento<T>* anterior = primeiro->getProximo();
             for(int i = 0; i<pos -1; i++){
@@ -106,9 +86,7 @@ void ListaCircular<T>::adicionaNaPos(T* dado, int pos){
             //O proximo elemento do anterior vai apontar pro novoDado
             anterior->setProximo(novoDado);
             tamanho++;
-        // } else {
-        //     throw ListaCheia();
-        // }
+
     }
 }
 
@@ -128,11 +106,7 @@ T* ListaCircular<T>::retiraDoInicio(){
         delete saiu;
         tamanho--;
         return retorno;  
-        // cabeca->setProximoElemento(saiu->getProximoElemento());
-
-        // delete saiu;
-        // tamanho--;
-        // return retorno;
+       
     }
 }
 
