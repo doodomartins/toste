@@ -46,15 +46,11 @@ void SuperMercado::iniciarSimulacao()
                 clientesDesistentes++;
                 valorDesistentes += novoCliente->getValorTotal()*3;
                 delete novoCliente;
-                cout << relogio << "\n";
-
             } else{
                 
                 if(novoCliente->getTipoCliente()){
-                //    cout << "Novo cliente aos "<< relogio << " Procurador de fila menor";
                     this->acharFilaMenor(novoCliente);
                 }else{
-                //    cout << "Novo cliente aos "<< relogio << " Procurador de fila com menos produtos";
                     this->acharFilaMenosProdutos(novoCliente);
                 }
             }
@@ -64,7 +60,6 @@ void SuperMercado::iniciarSimulacao()
         {   
            
             this->listaDeCaixas->mostra(i)->atendeCliente(relogio);
-            //cout<<listaDeCaixas->mostra(i)->qtClientesFila()<< " Clientes na fila de 0 a 3"<<"\n";
         }
         this->relogio++;
     }
@@ -176,7 +171,6 @@ void SuperMercado::gerarDados()
             this->tempoMedioNaFila += this->listaDeCaixas->mostra(i)->getTempoMedioFila(this->tempoDeSimulacao);
             this->clientesAtendidos += this->listaDeCaixas->mostra(i)->getClientesAtendidos();
         }
-    //this->faturamentoMedio -= this->valorDesistentes;
     this->tempoMedioNaFila /= this->nCaixas;
 
 }
@@ -251,33 +245,28 @@ void SuperMercado::requisitarParametros(){
     cout << "Entre com o tempo de simulacao, em horas" << "\n";
     cin >> this->tempoDeSimulacao;
     cout << "Entre com intervalo de tempo, em segundos, de chegada de cada cliente " << "\n";
-    cin >> this->tempoDeSimulacao;
+    cin >> this->tempoChegadaClientes;
     cout << "Entre com o numero de caixas" << "\n";
     cin >> this->nCaixas;
 
     for(int i = 0; i<this->nCaixas; i++)
     {   
-        cout <<"aaaqqqq" << i;
         char nomeCaixa[50];
         int eficiencia;
         int salario;
 
-        cout << "Entre com o nome do caixa " << i << "\n";
+        cout << "Entre com o nome do caixa "<< "\n";
         cin >> nomeCaixa;
-        cout << "Entre com a eficiencia do caixa " << i << "\n";
+        cout << "Entre com a eficiencia do caixa "<< "\n";
         cin >> eficiencia;
-        cout << "Entre com o salario do caixa " << i << "\n";
+        cout << "Entre com o salario do caixa "<< "\n";
         cin >> salario;
 
         Caixa* cx = new Caixa(string(nomeCaixa), eficiencia, salario);
-        cout << "Caixa criado com sucessagem" << cx->getId() << "\n";
-         cout << "Caixa adicionado com sucessagem" << listaDeCaixas->getTamanho() << "\n";
-    
+        
         this->listaDeCaixas->adicionaNoInicio(cx);
-        cout << "Caixa adicionado com sucessagem" << listaDeCaixas->getTamanho() << "\n";
-        cout << i << "i\n";
-        cout << nCaixas << "nCaixas\n";
+               
     }
-    cout << "aq";
+  
 }
 
