@@ -45,7 +45,8 @@ FilaEncadeada<T>::~FilaEncadeada(){
 
 /**
     Adicona um novo elemento, com o dado passado por paramentro no final da fila, 
-    fazendo o ultimo apontar para esse novo elemento.
+    fazendo o ultimo apontar para esse novo elemento, o proximo do ex-ultimo apontara para 
+    o novo elemento, e caso a lista estivesse vazia, o primeiro aponta pro novo elemento tambem.
 */
 template <typename T>
 void FilaEncadeada<T>::adiciona(T* dado){

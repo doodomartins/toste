@@ -224,7 +224,7 @@ bool SuperMercado::naoTemFilaDisponivel(){
     o arquivo de configuração "parametros.dat". 
 */
 bool SuperMercado::tipoDeEntrada(){
-    cout << "Bem vindo!" << "\n" << "Entre com 1 se deseja ler o arquivo de configuracao." 
+    cout << "Bem vindo a simulacao de supermercados!" << "\n" << "Entre com 1 se deseja ler o arquivo de parametros." 
     << "\n" << "Entre com 2 se deseja inserir parametros manualmente." << "\n";
     int x;
     cin >> x;

@@ -32,6 +32,9 @@ template<typename T> class ListaCircular {
 		int tamanho;
 };
 
+/**
+    Inicializa o tamanho com 0, e aponta o primeiro e o ultimo pra 0.
+*/
 template <typename T>
 ListaCircular<T>::ListaCircular(){
 	primeiro = 0;
@@ -39,16 +42,26 @@ ListaCircular<T>::ListaCircular(){
 	tamanho = 0;
    }
 
+/**
+    Destroi a lista, tirando todos os elemento delas.
+*/
 template <typename T>
 ListaCircular<T>::~ListaCircular(){
-
+    destroiLista();
 }
 
+/**
+    Retorna true se a lista estiver vazia, o tamanho dela for igual a zero.
+*/
 template <typename T>
 bool ListaCircular<T>::vazia(){
 	return tamanho==0;
 }
 
+/**
+    Adiciona um elemento no inicio, com o dado passado por parametro. Fazendo o ultimo apontar para o novo elemento,
+    e o proximo do novo elemento pro primeiro. Depois aponta o primeiro pro novo dado. Apos adiciona 1 no tamanho.
+*/
 template <typename T>
 void ListaCircular<T>::adicionaNoInicio(T* dado){
     Elemento<T>* novoDado = new Elemento<T>(dado);
@@ -68,6 +81,11 @@ void ListaCircular<T>::adicionaNoInicio(T* dado){
     tamanho++;
 }
 
+/**
+    Adiciona um novo elemento na posicao, percorrendo a lista ate um elemento antes da posicao,
+    apontando o proximo do anterior para o novo dado, e o proximo do novo dado para o proximo do anterior.
+    Apos adiciona 1 no tamanho.
+*/
 template <typename T>
 void ListaCircular<T>::adicionaNaPos(T* dado, int pos){
     if(pos > this->tamanho){
@@ -90,11 +108,18 @@ void ListaCircular<T>::adicionaNaPos(T* dado, int pos){
     }
 }
 
+/**
+    Adiciona um elemento na ultima posicao, com o metodo adiciona na posicao.
+*/
 template <typename T>
 void ListaCircular<T>::adiciona(T* dado){
     this->adicionaNaPos(dado, tamanho);
 }
 
+/**
+    Retira o elemento do inicio e retorna um ponteiro para sua informacao, e aponta o primeiro elemento para o proximo 
+    do elemento retirado. Deletando o elemento.
+*/
 template <typename T>
 T* ListaCircular<T>::retiraDoInicio(){
     if(this->vazia()){
@@ -110,6 +135,12 @@ T* ListaCircular<T>::retiraDoInicio(){
     }
 }
 
+/**
+    Percorre a lista ate o anterior do elemento da posicao passada por parametro, retira o elemento,
+    aponta o proximo elemento do anterior para o proximo elemento dps do eliminado e retorna o ponteiro para 
+    a informacao do elemento retirado.
+    Deletando o elemento.
+*/
 template <typename T>
 T* ListaCircular<T>::retiraDaPos(int pos){
      if(this->vazia()){
@@ -137,16 +168,25 @@ T* ListaCircular<T>::retiraDaPos(int pos){
     }
 }
 
+/**
+    Retira o elemento da ultima posicao, usando o metodo retira da posicao.
+*/
 template <typename T>
 T* ListaCircular<T>::retira(){
     return this->retiraDaPos(tamanho-1);
 }   
 
+/**
+    Retorna o tamanho da lista.
+*/
  template <typename T>
  int ListaCircular<T>::getTamanho() {
     return tamanho;
  }
 
+/**
+    Percorre a lista ate a posicao e retorna um ponteiro para informacao daquele elemento.
+*/
  template <typename T>
  T* ListaCircular<T>::mostra(int pos){
      if(pos > this->tamanho){
@@ -162,6 +202,9 @@ T* ListaCircular<T>::retira(){
      }
 }
 
+/**
+    Retira todos os elementos da lista ate ela ficar vazia.
+*/
 template <typename T>
 void ListaCircular<T>::destroiLista(){
    while(true){
