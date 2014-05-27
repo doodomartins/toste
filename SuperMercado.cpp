@@ -244,6 +244,7 @@ void SuperMercado::requisitarParametros(){
     cin >> this->nome;
     cout << "Entre com o tempo de simulacao, em horas" << "\n";
     cin >> this->tempoDeSimulacao;
+    this->tempoDeSimulacao = this->tempoDeSimulacao*60*60;
     cout << "Entre com intervalo de tempo, em segundos, de chegada de cada cliente " << "\n";
     cin >> this->tempoChegadaClientes;
     cout << "Entre com o numero de caixas" << "\n";
